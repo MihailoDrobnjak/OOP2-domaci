@@ -1,7 +1,5 @@
 
-#ostalo od quarkusa, neka ga muka mi da micem
-
-
+#ostalo od quarkusa, neka ga izgleda da ne bude prazna stranica
 
 # code-with-quarkus
 
