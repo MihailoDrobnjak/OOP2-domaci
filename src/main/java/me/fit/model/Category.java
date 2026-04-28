@@ -11,7 +11,7 @@ public class Category {
     @SequenceGenerator(name = "category_seq", sequenceName = "category_seq", allocationSize = 1)
     public Long id;
 
-    public String name; // e.g., "Elektronika"
+    public String name;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<Product> products;

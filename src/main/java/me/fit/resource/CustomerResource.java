@@ -1,5 +1,6 @@
 package me.fit.resource;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -10,6 +11,7 @@ import me.fit.model.Product;
 import me.fit.service.CustomerService;
 
 import java.util.List;
+
 
 @Path("/customer")
 public class CustomerResource {
@@ -57,6 +59,7 @@ public class CustomerResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}/orders")
+    @RolesAllowed("admin")
     public Response getCustomerOrders(@PathParam("id") Long customerId) {
         List<Order> orders = customerService.getOrdersByCustomerId(customerId);
         if (orders == null || orders.isEmpty()) {
