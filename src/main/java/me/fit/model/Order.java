@@ -13,4 +13,14 @@ public class Order {
     public Double totalAmount;
 
     public Order() {}
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_id", referencedColumnName = "id")
+    public Payment payment;
+
+    @com.fasterxml.jackson.annotation.JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    public Customer customer;
+
 }

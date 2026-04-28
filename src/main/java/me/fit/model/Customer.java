@@ -18,10 +18,12 @@ public class Customer {
     public String ime;
     public String prezime;
 
-    // Requirement 3: List without relational annotations!
-    // We add @Transient so Quarkus doesn't crash on startup.
-    @Transient
-    public List<Object> orders;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+    public Cart cart;
+
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    public List<Order> orders;
 
     public Customer() { }
 
