@@ -1,5 +1,6 @@
 package me.fit.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -22,8 +23,12 @@ public class Customer {
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
     public Cart cart;
 
+    @com.fasterxml.jackson.annotation.JsonIgnore
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<Order> orders;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    public java.util.List<TimezoneInfo> timezones = new java.util.ArrayList<>();
 
     public Customer() { }
 
