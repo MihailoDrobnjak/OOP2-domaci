@@ -30,6 +30,14 @@ public class Customer {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public java.util.List<TimezoneInfo> timezones = new java.util.ArrayList<>();
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "customer_uploaded_file",
+            joinColumns = @JoinColumn(name = "customer_id"),
+            inverseJoinColumns = @JoinColumn(name = "file_id")
+    )
+    public java.util.List<UploadedFile> uploadedFiles = new java.util.ArrayList<>();
+
     public Customer() { }
 
     public void setId(Long id) { this.id = id; }
